@@ -6,10 +6,16 @@ namespace ExpensiveParser.Parser
 {
     public class HtmlLoader
     {
+        private readonly HttpClient Client;
+
+        public HtmlLoader()
+        {
+            Client = new HttpClient();
+        }
+
         public async Task<string> GetHtmlDocument(string url)
         {
-            HttpClient client = new HttpClient();
-            var response = await client.GetAsync(url);
+            var response = await Client.GetAsync(url);
             string source = null;
             if (response !=null && response.StatusCode == HttpStatusCode.OK)
             {

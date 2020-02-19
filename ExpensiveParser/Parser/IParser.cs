@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ExpensiveParser.OLX;
+﻿using AngleSharp.Html.Dom;
 
 namespace ExpensiveParser.Parser
 {
-    public interface IParser<T> where  T : class
+    public interface IParser<T> where T : class
     {
-        T Parse(OlxDocumentModel olxDocumentModel);
+        string[] GetLink(IHtmlDocument document, int count);
+        T Parse(IHtmlDocument document);
     }
 }

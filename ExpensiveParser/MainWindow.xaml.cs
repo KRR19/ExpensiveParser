@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpensiveParser.Parser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace ExpensiveParser
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ParserWorker Worker = new ParserWorker();
         public MainWindow()
         {
             InitializeComponent();
@@ -27,7 +29,7 @@ namespace ExpensiveParser
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            Worker.Start();
         }
     }
 }
