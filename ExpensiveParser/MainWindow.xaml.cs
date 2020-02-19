@@ -1,18 +1,8 @@
-﻿using ExpensiveParser.Parser;
-using System;
+﻿using ExpensiveParser.Besplatka;
+using ExpensiveParser.Parser;
+using ExpensiveParser.Save;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ExpensiveParser
 {
@@ -22,14 +12,29 @@ namespace ExpensiveParser
     public partial class MainWindow : Window
     {
         private ParserWorker Worker = new ParserWorker();
+        private List<BesplatkaDocumentModel> Model;
         public MainWindow()
         {
             InitializeComponent();
+            Model = new List<BesplatkaDocumentModel>();
+            Worker.OnComplete += OnComplete;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void OnComplete(object obj)
         {
-            Worker.Start();
+            MessageBox.Show("All works done!");
+            SaveExelBtn.Visibility = Visibility.Visible;
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Model = await Worker.Start();
+        }
+
+        private void Save_Exel(object sender, RoutedEventArgs e)
+        {
+            ISave save = new SaveExel();
+            save.Save(Model);
         }
     }
 }

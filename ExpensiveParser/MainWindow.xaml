@@ -5,6 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpensiveParser"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Button Content="Button" Height="36" Margin="33,200,0,0" HorizontalAlignment="Left" Width="111" Click="Button_Click"/>
+        Title="MainWindow" Height="200" Width="300">
+    <Grid>
+
+        <Button Content="Start" Height="36" Margin="0,7,0,59" HorizontalAlignment="Center" Width="240" Click="Button_Click"/>
+        <Button Content="Save to Exel" Height="36" Margin="0,57,0,9" HorizontalAlignment="Center" Width="240" Click="Save_Exel" Visibility="Hidden" Name="SaveExelBtn"/>
+
+    </Grid>
+
+
 </Window>

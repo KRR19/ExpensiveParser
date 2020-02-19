@@ -11,30 +11,23 @@ namespace ExpensiveParser.Parser
     {
         private readonly int COUNT_LOAD_DATA = 3;
         private IBesplatkaSettings Settings;
-        private bool isActive;
 
         public event Action<object> OnComplete;
         public ParserWorker()
         {
             this.Settings = new BesplatkaSettings(this.COUNT_LOAD_DATA);
         }
-        public void Start()
+        public async Task<List<BesplatkaDocumentModel>> Start()
         {
-            isActive = true;
-            Worker();
+            return await Worker();
         }
-        public async void Worker()
+        public async Task<List<BesplatkaDocumentModel>> Worker()
         {
             List<BesplatkaDocumentModel> models = new List<BesplatkaDocumentModel>();
             string[] links = await GetLinksAsync();
 
             for(int advertIndex = 0; advertIndex < COUNT_LOAD_DATA; advertIndex++)
             {
-                if(!isActive)
-                {
-                    OnComplete?.Invoke(this);
-                    return;
-                }
                 HtmlLoader loader = new HtmlLoader();
                 BesplatkaParser parser = new BesplatkaParser();
                 HtmlParser domDocument = new HtmlParser();
@@ -44,6 +37,8 @@ namespace ExpensiveParser.Parser
                 model.Link = links[advertIndex];
                 models.Add(model);
             }
+            OnComplete?.Invoke(this);
+            return models;
         }
         
 
