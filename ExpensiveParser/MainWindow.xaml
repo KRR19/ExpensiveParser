@@ -8,7 +8,7 @@
         Title="MainWindow" Height="200" Width="300">
     <Grid>
 
-        <Button Content="Start" Height="36" Margin="0,7,0,59" HorizontalAlignment="Center" Width="240" Click="Button_Click"/>
+        <Button Content="Start" Height="36" Margin="0,7,0,59" HorizontalAlignment="Center" Width="240" Click="Button_Click" Name="StartBtn"/>
         <Button Content="Save to Exel" Height="36" Margin="0,57,0,9" HorizontalAlignment="Center" Width="240" Click="Save_Exel" Visibility="Hidden" Name="SaveExelBtn"/>
 
     </Grid>

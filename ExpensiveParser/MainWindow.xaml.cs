@@ -23,17 +23,19 @@ namespace ExpensiveParser
         public void OnComplete(object obj)
         {
             MessageBox.Show("All works done!");
+            StartBtn.IsEnabled = true;
             SaveExelBtn.Visibility = Visibility.Visible;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            StartBtn.IsEnabled = false;
             Model = await Worker.Start();
         }
 
         private void Save_Exel(object sender, RoutedEventArgs e)
         {
-            ISave save = new SaveExel();
+            ISave save = new SaveExcel();
             save.Save(Model);
         }
     }
